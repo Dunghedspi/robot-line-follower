@@ -1,5 +1,5 @@
-#define enA 2
-#define enB 3
+#define enA 3
+#define enB 5
 
 #define inA1 6 //Định nghĩa chân in1 của động cơ A // A is left tire
 #define inA2 7 //Định nghĩa chân in2 của động cơ A
@@ -10,7 +10,7 @@
 #define linesens2 11 //Định nghĩa chân cảm biến line 2
 #define linesens3 12 //Định nghĩa chân cảm biến line 3
 
-#define MAX_SPEED 90
+#define MAX_SPEED 120
 
 
 int statusCar = 0; // default 0 
@@ -25,9 +25,6 @@ void setup() {
     pinMode(linesens1, INPUT);//Set chân cảm biến 1 là input
     pinMode(linesens2, INPUT);//Set chân cảm biến 2 là input
     pinMode(linesens3, INPUT);//Set chân cảm biến 3 là input
-
-    Serial.begin(9600);  
-
 }
 
 void loop() {
@@ -53,9 +50,6 @@ void darkLineFollower (byte inR1, byte inR2, byte inL1, byte inL2, byte sen1, by
     case 0:
       robotMover( inR1, inR2, inL1, inL2, 1);// tiến thẳng
       break;
-    case 3:
-      robotMover( inR1, inR2, inL1, inL2, 2);// lệch vạch thì lùi
-      break;   
   }
   
 }
@@ -76,8 +70,8 @@ void robotMover (byte inR1, byte inR2, byte inL1, byte inL2, byte action)
   switch (action)
   {
     case 1://đi thẳng
-      motorControlWithSpeed(inR1, inR2, 1, 150, 150);
-      motorControlWithSpeed(inL1, inL2, 1, 150, 150);
+      motorControlWithSpeed(inR1, inR2, 1, 128, 128);
+      motorControlWithSpeed(inL1, inL2, 1, 128, 128);
       break;
     case 2:// lùi lại
       motorControlNoSpeed(inR1, inR2, 2);
@@ -101,7 +95,6 @@ void robotMover (byte inR1, byte inR2, byte inL1, byte inL2, byte action)
       break;
     default:
       action = 0;
-      
   }
 }
 
