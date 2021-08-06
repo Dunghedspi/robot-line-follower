@@ -64,8 +64,8 @@ void robotMover (byte inR1, byte inR2, byte inL1, byte inL2, byte action)
       motorControlWithSpeed(inL1, inL2, 0, 128, 0); //weak momentum
       break;
     case 1:// rẽ phải
-      motorControlWithSpeed(inR1, inR2, 2, 0, 80);
-      motorControlWithSpeed(inL1, inL2, 1, 180, 0);
+      motorControlWithSpeed(inR1, inR2, 2, 0, 128);
+      motorControlWithSpeed(inL1, inL2, 1, 150, 0);
       break;
     default:
       action = 0;
