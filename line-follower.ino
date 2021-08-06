@@ -57,10 +57,10 @@ void robotMover (byte inR1, byte inR2, byte inL1, byte inL2, byte action)
       break;
     case -1:// rẽ trái
       motorControlWithSpeed(inR1, inR2, 1, 0, 150);
-      motorControlWithSpeed(inL1, inL2, 0, 128, 0); //weak momentum
+      motorControlWithSpeed(inL1, inL2, 1, 80, 0); //weak momentum
       break;
     case 1:// rẽ phải
-      motorControlWithSpeed(inR1, inR2, 2, 0, 128);
+      motorControlWithSpeed(inR1, inR2, 1, 0, 80);
       motorControlWithSpeed(inL1, inL2, 1, 150, 0);
       break;
     default:
@@ -74,9 +74,7 @@ void motorControlWithSpeed (byte in1, byte in2, byte direct, int spdA, int spdB)
   {
     case 0:
       digitalWrite(in1, LOW);
-      digitalWrite(in2, HIGH);
-      analogWrite(enA, MAX_SPEED);
-      analogWrite(enB, MAX_SPEED);
+      digitalWrite(in2, LOW);
       break;
     case 1:
       digitalWrite(in1, LOW);
