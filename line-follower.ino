@@ -51,11 +51,9 @@ void robotMover (byte inR1, byte inR2, byte inL1, byte inL2, byte action)
   */
   switch (action)
   {
-     case 0:// di thang
-      digitalWrite(in1, LOW);
-      digitalWrite(in2, HIGH);
-      analogWrite(enA, MAX_SPEED);
-      analogWrite(enB, MAX_SPEED);
+    case 0://đi thẳng
+      motorControlWithSpeed(inR1, inR2, 1, 128, 128);
+      motorControlWithSpeed(inL1, inL2, 1, 128, 128);
       break;
     case -1:// rẽ trái
       motorControlWithSpeed(inR1, inR2, 1, 0, 150);
@@ -76,7 +74,9 @@ void motorControlWithSpeed (byte in1, byte in2, byte direct, int spdA, int spdB)
   {
     case 0:
       digitalWrite(in1, LOW);
-      digitalWrite(in2, LOW);
+      digitalWrite(in2, HIGH);
+      analogWrite(enA, MAX_SPEED);
+      analogWrite(enB, MAX_SPEED);
       break;
     case 1:
       digitalWrite(in1, LOW);
