@@ -22,19 +22,19 @@ void darkLineFollower (byte inR1, byte inR2, byte inL1, byte inL2, byte sen1, by
   switch (deviationDarkLine3Sensor (sen1, sen2, sen3))
   {
     case -1:
-      robotMover( inR1, inR2, inL1, inL2, 6);// rẽ phải
+      robotMover( inR1, inR2, inL1, inL2, 1);// rẽ phải
       break;
     case -2:
-      robotMover( inR1, inR2, inL1, inL2, 6);
+      robotMover( inR1, inR2, inL1, inL2, 1);
       break;
     case 1:
-      robotMover( inR1, inR2, inL1, inL2, 5);// rẽ trái
+      robotMover( inR1, inR2, inL1, inL2, -1);// rẽ trái
       break;
     case 2:
-      robotMover( inR1, inR2, inL1, inL2, 5);
+      robotMover( inR1, inR2, inL1, inL2, -1);
       break;
     case 0:
-      robotMover( inR1, inR2, inL1, inL2, 1);// tiến thẳng
+      robotMover( inR1, inR2, inL1, inL2, 0);// tiến thẳng
       break;
   }
   
@@ -55,58 +55,20 @@ void robotMover (byte inR1, byte inR2, byte inL1, byte inL2, byte action)
   */
   switch (action)
   {
-    case 1://đi thẳng
+    case 0://đi thẳng
       motorControlWithSpeed(inR1, inR2, 1, 128, 128);
       motorControlWithSpeed(inL1, inL2, 1, 128, 128);
       break;
-    case 2:// lùi lại
-      motorControlNoSpeed(inR1, inR2, 2);
-      motorControlNoSpeed(inL1, inL2, 2);
-      break;
-    case 3:// quay trái
-      motorControlNoSpeed(inR1, inR2, 1);
-      motorControlNoSpeed(inL1, inL2, 2);
-      break;
-    case 4:// quay phải
-      motorControlNoSpeed(inR1, inR2, 2);
-      motorControlNoSpeed(inL1, inL2, 1);
-      break;
-    case 5:// rẽ trái
+    case -1:// rẽ trái
       motorControlWithSpeed(inR1, inR2, 1, 0, 150);
       motorControlWithSpeed(inL1, inL2, 0, 128, 0); //weak momentum
       break;
-    case 6:// rẽ phải
+    case 1:// rẽ phải
       motorControlWithSpeed(inR1, inR2, 2, 0, 80);
       motorControlWithSpeed(inL1, inL2, 1, 180, 0);
       break;
     default:
       action = 0;
-  }
-}
-
-
-void motorControlNoSpeed (byte in1, byte in2, byte direct)
-{
-  switch (direct)
-  {
-    case 0:// Dừng không quay
-      digitalWrite(in1, LOW);
-      digitalWrite(in2, LOW);
-      break;
-    case 1:// Quay chiều thứ 1
-      digitalWrite(in1, LOW);
-      digitalWrite(in2, HIGH);
-      analogWrite(enA, MAX_SPEED);
-      analogWrite(enB, MAX_SPEED);
-      
-      break;
-    case 2:// Quay chiều thứ 2
-      digitalWrite(in1, HIGH);
-      digitalWrite(in2, LOW);
-      analogWrite(enA, MAX_SPEED);
-      analogWrite(enB, MAX_SPEED);
-      
-      break;
   }
 }
 
