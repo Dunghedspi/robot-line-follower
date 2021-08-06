@@ -44,13 +44,9 @@ void robotMover (byte inR1, byte inR2, byte inL1, byte inL2, byte action)
   /*
   inR1 inR2 là 2 chân tín hiệu động cơ bên phải
   inL1 inL2 là 2 chân tín hiệu động cơ bên trái
-  action= 0 đứng yên
-  action =1 đi thẳng
-  action =2 lùi lại
-  action =3 quay trái
-  action =4 quay phải
-  action =5 rẽ trái
-  action =6 rẽ phải
+  action =0 đi thẳng
+  action =-1 rẽ trái
+  action =1 rẽ phải
 
   */
   switch (action)
@@ -76,18 +72,18 @@ void motorControlWithSpeed (byte in1, byte in2, byte direct, int spdA, int spdB)
 {
   switch (direct)
   {
-    case 0:// Dừng không quay
+    case 0:
       digitalWrite(in1, LOW);
       digitalWrite(in2, LOW);
       break;
-    case 1:// Quay chiều thứ 1
+    case 1:
       digitalWrite(in1, LOW);
       digitalWrite(in2, HIGH);
       if(spdA != 0) analogWrite(enA, spdA);
       if(spdB != 0) analogWrite(enB, spdB);
       
       break;
-    case 2:// Quay chiều thứ 2
+    case 2:
       digitalWrite(in1, HIGH);
       digitalWrite(in2, LOW);
       if(spdA != 0) analogWrite(enA, spdA);
